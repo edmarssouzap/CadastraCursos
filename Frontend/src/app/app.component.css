@@ -1,0 +1,12 @@
+#navbar { background-color: midnightblue }
+
+li, form {
+  display: inline-flex;
+}
+
+span {
+  color: white;
+  font-weight: bold;
+}
+
+

@@ -1,0 +1,75 @@
+<!--
+  cursoId: number;
+  nome: string; // Todos os campos desse model é obrigatorio
+  dataInicio: Date;
+  dataFinal: Date;
+  desAssunto: string;
+  CatId: number;
+-->
+
+<div id="cursos">
+  <div class="container">
+
+    <p class="h1">
+      Cadastrar curso
+    </p><hr />
+
+    <form class="">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            <span>Nome:</span>
+          <input type="text" placeholder="Nome do curso" value="" autofocus required>
+          </label>
+        </div>
+
+        <div class="col-md-6">
+          <label><span>Categoria:</span></label>
+
+          <select  *ngFor="let lista of listaCategoria"  id="categoria">
+            <option value="Multiplataforma">Multiplataforma</option>
+            <option value="Banco de dados">Banco de dados</option>
+            <option value="Metodologia">Metodologia</option>
+            <option value="Comunicacao">Comunicação</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            <span>Data Inicial:</span>
+            <i class="fa fa-calendar"></i>
+          </label>
+            <input type="date" value="" required>
+
+        </div>
+
+        <div class="col-md-6">
+          <label>
+            <span>Data Final:</span>
+            <i class="fa fa-calendar"></i>
+            <input type="date" value="" required>
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-1">
+          <button class="btn" submit="">Enviar</button>
+        </div>
+
+        <div class="col-md-1">
+          <button routerLink="/cursos" class="btn" submit="">Detalhes</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+</div>

@@ -29,6 +29,9 @@ namespace CursosCast
         public void ConfigureServices(IServiceCollection services)
         {
 
+            // Adição
+            //services.AddApplicationServices(Configuration);
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -52,6 +55,13 @@ namespace CursosCast
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            // Adicao
+            //app.UseCors(
+            //            x => x.AllowAnyHeader().
+            //            AllowAnyMethod().
+            //            WithOrigins("https://localhost:4200")
+            //           );
 
             app.UseAuthorization();
 

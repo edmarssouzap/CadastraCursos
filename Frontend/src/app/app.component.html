@@ -1,5 +1,24 @@
 
 
+<div id="navbar">
 
+  <nav class="navbar navbar-expand-lg">
+    <ul>
+      <li>
+        <a class="nav-link" routerLink="home" routerLinkActive="active"><span>Home</span></a>
+      </li>
 
-<app-root></app-root>
+      <li>
+        <a class="nav-link" routerLink="cursos" routerLinkActive="active"><span>Curso</span></a>
+      </li>
+
+      <form>
+        <button class="btn btn-outline-success" type="submit">Login</button>
+      </form>
+
+    </ul>
+  </nav>
+
+</div>
+
+<router-outlet></router-outlet>
