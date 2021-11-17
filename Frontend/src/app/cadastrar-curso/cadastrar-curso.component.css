@@ -1,18 +1,16 @@
 
 #cursos {
   width: 100%;
-  margin: 100px auto;
+  margin: 50px auto;
 }
 
-#cursos input, #cursos select {
-  margin: 30px;
-  width: 60%;
+#cursos input, #cursos select, #cursos textarea {
+  margin: 20px;
+  width: 80%;
 }
 
-#cursos input {
-  background-color: rgb(207, 204, 204);
-  border-radius: 15px;
-  height: 40px;
+#cursos input, #cursos textarea, #cursos select {
+  background-color: rgb(243, 237, 237);
 }
 
 #cursos button {
@@ -24,11 +22,13 @@
   color: white;
   font-weight: bold;
   margin: 10px;
-  border: 1px solid gray
 }
 
 .btn:hover {
   background-color: dodgerblue;
-  border-radius: 15px;
   color: rgb(49, 49, 49);
+}
+
+span {
+  margin-bottom: 10px;
 }

@@ -10,18 +10,22 @@ import { Curso } from '../model/curso.model';
 })
 export class CadastrarCursoService {
 
-
+  dadosCategoria: Categoria;
+  dadosCurso: Curso;
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+    this.dadosCategoria = {} as Categoria;
+    this.dadosCurso = {} as Curso;
+  }
 
-  deletarCurso(id: number) {
+  deletandoCurso(id: number) {
     return this.http.get (environment.EnderecoAPI + '/Cursos' + id)
   }
 
-  // cadastrandoCurso() {
-  //   return this.http.post(environment.EnderecoAPI + '/Cursos' + corpo);
-  // }
+  cadastrandoCurso() {
+      return this.http.post(environment.EnderecoAPI + '/Cursos', this.dadosCurso);
+  }
 
 }

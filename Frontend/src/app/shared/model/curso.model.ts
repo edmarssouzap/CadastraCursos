@@ -4,5 +4,6 @@ export interface Curso {
   dataInicio: Date;
   dataFinal: Date;
   desAssunto: string;
+  qtdAlunosTurma: number;
   catId: number;
 }

@@ -16,8 +16,6 @@ namespace CursosCast.Data
 
         public DbSet<CursosCast.Model.Curso> Curso { get; set; }
 
-        public DbSet<CursosCast.Model.Turma> Turma { get; set; }
-
         public DbSet<CursosCast.Model.Categoria> Categoria { get; set; }
 
         public DbSet<CursosCast.Model.Conta> Conta { get; set; }

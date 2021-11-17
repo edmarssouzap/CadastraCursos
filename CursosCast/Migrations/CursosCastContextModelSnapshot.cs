@@ -71,9 +71,6 @@ namespace CursosCast.Migrations
                     b.Property<int>("CatId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CategoriaCatId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DataFinal")
                         .HasColumnType("datetime2");
 
@@ -88,37 +85,23 @@ namespace CursosCast.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CursoId");
-
-                    b.HasIndex("CategoriaCatId");
-
-                    b.ToTable("Curso");
-                });
-
-            modelBuilder.Entity("CursosCast.Model.Turma", b =>
-                {
-                    b.Property<int>("TurmaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("QtdAlunos")
+                    b.Property<int?>("QtdAlunosTurma")
                         .HasColumnType("int");
 
-                    b.HasKey("TurmaId");
+                    b.HasKey("CursoId");
 
-                    b.ToTable("Turma");
+                    b.HasIndex("CatId");
+
+                    b.ToTable("Curso");
                 });
 
             modelBuilder.Entity("CursosCast.Model.Curso", b =>
                 {
                     b.HasOne("CursosCast.Model.Categoria", "Categoria")
                         .WithMany()
-                        .HasForeignKey("CategoriaCatId");
+                        .HasForeignKey("CatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Categoria");
                 });

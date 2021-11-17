@@ -37,20 +37,6 @@ namespace CursosCast.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Turma",
-                columns: table => new
-                {
-                    TurmaId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    QtdAlunos = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Turma", x => x.TurmaId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Curso",
                 columns: table => new
                 {
@@ -59,25 +45,25 @@ namespace CursosCast.Migrations
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DataInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DataFinal = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    QtdAlunosTurma = table.Column<int>(type: "int", nullable: true),
                     DesAssunto = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CatId = table.Column<int>(type: "int", nullable: false),
-                    CategoriaCatId = table.Column<int>(type: "int", nullable: true)
+                    CatId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Curso", x => x.CursoId);
                     table.ForeignKey(
-                        name: "FK_Curso_Categoria_CategoriaCatId",
-                        column: x => x.CategoriaCatId,
+                        name: "FK_Curso_Categoria_CatId",
+                        column: x => x.CatId,
                         principalTable: "Categoria",
                         principalColumn: "CatId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Curso_CategoriaCatId",
+                name: "IX_Curso_CatId",
                 table: "Curso",
-                column: "CategoriaCatId");
+                column: "CatId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -87,9 +73,6 @@ namespace CursosCast.Migrations
 
             migrationBuilder.DropTable(
                 name: "Curso");
-
-            migrationBuilder.DropTable(
-                name: "Turma");
 
             migrationBuilder.DropTable(
                 name: "Categoria");

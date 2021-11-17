@@ -28,16 +28,13 @@ namespace CursosCast
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            // Adição
-            //services.AddApplicationServices(Configuration);
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CursosCast", Version = "v1" });
             });
 
+            // Habilita a string de conexao com usuario e senha para o servidor SQL Server
             services.AddDbContext<CursosCastContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("CursosCastContext")));
         }
@@ -56,12 +53,12 @@ namespace CursosCast
 
             app.UseRouting();
 
-            // Adicao
-            //app.UseCors(
-            //            x => x.AllowAnyHeader().
-            //            AllowAnyMethod().
-            //            WithOrigins("https://localhost:4200")
-            //           );
+            // Libera o acesso para requisição a API para os dominios abaixo via HTTP.
+            app.UseCors(
+                        x => x.AllowAnyHeader().
+                        AllowAnyMethod().
+                        WithOrigins("https://localhost:4200", "http://localhost:4200")
+                       );
 
             app.UseAuthorization();
 

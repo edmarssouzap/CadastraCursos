@@ -9,14 +9,11 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class CategoriaService {
 
-
   constructor(
     private http: HttpClient,
   ) { }
 
-
   obterCategoria () {
-    return this.http.get (environment.EnderecoAPI + '/Categoria');
+    return this.http.get (environment.EnderecoAPI + '/Categorias');
   }
-
 }
