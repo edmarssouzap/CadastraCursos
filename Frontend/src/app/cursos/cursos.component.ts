@@ -10,7 +10,7 @@ import { Curso } from '../shared/model/curso.model';
 export class CursosComponent implements OnInit {
 
   dadosCurso: Curso;
-  listaCursos: any;
+  listaCursos: Curso[] = [];
 
   constructor(
       private cursoService: CursoService,
@@ -20,11 +20,16 @@ export class CursosComponent implements OnInit {
     this.listandoCursos();
   }
 
+
+  editarCurso(curso: any){
+    console.log(curso);
+  }
+
   listandoCursos(): void {
-     this.cursoService.obterCursos().subscribe(res => (
-        //  this.listaCursos = res
-        console.log (res)
-     ));
+    this.cursoService.obterCursos().subscribe((res: any) => {
+      this.listaCursos = res;
+      console.log(res);
+    });
   }
 
 }

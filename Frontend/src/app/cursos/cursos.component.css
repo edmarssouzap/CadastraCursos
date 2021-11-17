@@ -5,3 +5,12 @@ p[class^="h1"] {
 span {
   font-weight: bold;
 }
+
+tbody tr:hover {
+  background-color: dodgerblue;
+}
+
+
+td, th {
+  align-items: center;
+}

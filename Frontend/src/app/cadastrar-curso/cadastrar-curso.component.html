@@ -12,7 +12,9 @@
         <div class="col-md-6">
           <label>
             <span>Nome: *</span><br>
-            <input id="validationCustom01" class="form-control is-valid" type="text" placeholder="Nome do curso"
+
+            <input id="validationCustom01" class="form-control is-valid"
+            type="text" placeholder="Nome do curso" name="nome"
               [(ngModel)]="cadastrarCurso.dadosCurso.nome" autofocus required>
               <span class="invalid-feedback">Preencha com um nome.</span>
           </label>
@@ -31,7 +33,6 @@
             <span class="invalid-feedback">Escolha uma categoria.</span>
 
           </div>
-
         </div>
       </div>
 
@@ -41,7 +42,8 @@
             <span>Data Inicial: </span>
             <i class="fa fa-calendar-alt"> *</i>
           </label>
-          <input id="validationCustom02" class="form-control is-valid" type="date" [(ngModel)]="cadastrarCurso.dadosCurso.dataInicio" required>
+          <input #dataInicio id="validationCustom02" class="form-control is-valid" type="date"
+          [(ngModel)]="cadastrarCurso.dadosCurso.dataInicio" required>
           <span class="invalid-feedback">Por favor, preencha o campo de data.</span>
         </div>
 
@@ -49,18 +51,18 @@
           <label>
             <span>Data Final: </span>
             <i class="fa fa-calendar-alt"> *</i>
-            <input id="validationCustom03" class="form-control is-valid" type="date" [(ngModel)]="cadastrarCurso.dadosCurso.dataFinal" required>
+            <input #dataFinal id="validationCustom03" class="form-control is-valid" type="date"
+            [(ngModel)]="cadastrarCurso.dadosCurso.dataFinal" required>
             <span class="invalid-feedback">Por favor, preencha o campo de data.</span>
           </label>
         </div>
       </div>
 
-
       <div class="row">
         <div class="col-md-6">
           <label>
             <span>Qtde Alunos por Turma: </span>
-            <input id="validationCustom04" class="form-control is-valid" type="number" [(ngModel)]="cadastrarCurso.dadosCurso.qtdAlunosTurma" required>
+            <input id="validationCustom04" class="form-control is-valid" type="number" min="1" [(ngModel)]="cadastrarCurso.dadosCurso.qtdAlunosTurma" required>
             <span class="invalid-feedback">Digite a quantidade de alunos.</span>
           </label>
         </div>
@@ -69,8 +71,9 @@
           <label>
             <span>Descrição do curso: *</span>
             <textarea class="form-control invalid" [(ngModel)]="cadastrarCurso.dadosCurso.desAssunto"
-              placeholder="Digite a descricao do curso" required></textarea>
-              <span class="invalid-feedback">Digite a quantidade de alunos.</span>
+              placeholder="Digite a descricao do curso" required>
+            </textarea>
+            <span class="invalid-feedback">Digite a quantidade de alunos.</span>
           </label>
         </div>
 
@@ -84,6 +87,11 @@
 
         <div class="col-md-1">
           <button routerLink="/home" class="btn">Voltar</button>
+        </div>
+
+
+        <div class="col-md-1">
+          <button routerLink="/cursos" class="btn">Detalhes</button>
         </div>
       </div>
 

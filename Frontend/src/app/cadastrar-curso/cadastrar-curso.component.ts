@@ -6,7 +6,6 @@ import { CadastrarCursoService } from '../shared/services/cadastrar-curso.servic
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
-
 @Component({
   selector: 'app-cadastrar-curso',
   templateUrl: './cadastrar-curso.component.html',
@@ -15,8 +14,8 @@ import { ToastrService } from 'ngx-toastr';
 export class CadastrarCursoComponent implements OnInit {
 
   dadosCategoria: Categoria; // Dados do form
-  listaCategorias: any; // Lista obtida pelo servidor vem parar AQUI
-  dataAtual = new Date();
+  listaCategorias: Categoria[] = []; // Lista obtida pelo servidor vem parar AQUI
+
 
 
   constructor(
@@ -32,11 +31,27 @@ export class CadastrarCursoComponent implements OnInit {
     this.listandoCategorias();
   }
 
+  validandoCampos(form: NgForm) {
+    form.reset();
+  }
+
+  validandoDataInicialFinal(dataInicial: any, dataFinal: any) {
+    dataInicial: new Date(this.cadastrarCurso.dadosCurso.dataInicio);
+    dataFinal: new Date(this.cadastrarCurso.dadosCurso.dataFinal);
+
+    if (dataInicial) {
+
+    }
+  }
+
   enviandoDados(form: NgForm): void {
     if (form.valid) {
+      // dataBrasil: this.cadastrarCurso.dadosCurso.dataInicio.toLocaleDateString('pt-BR', {timeZone: 'UTC'});
+
       this.cadastrarCurso.cadastrandoCurso().subscribe((res) => {
-        console.log (res);
+        console.log(res)
         this.toastr.success("Enviado com sucesso.", "CursosCast");
+        form.reset();
     });
     } else {
       console.log (this.cadastrarCurso.dadosCurso);
@@ -46,8 +61,11 @@ export class CadastrarCursoComponent implements OnInit {
   }
 
   listandoCategorias(): void {
-     this.categoriaService.obterCategoria().subscribe(res => (
+     this.categoriaService.obterCategoria().subscribe((res: any) => (
          this.listaCategorias = res
      ));
+    //  this.listaCategorias.forEach(element => {
+    //    element.catId
+    //  });
   }
 }
