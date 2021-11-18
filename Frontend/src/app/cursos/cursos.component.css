@@ -10,7 +10,12 @@ tbody tr:hover {
   background-color: dodgerblue;
 }
 
+tr, tbody, th, td, table{
+  margin: 10px;
+  align-items: center;
+}
 
 td, th {
   align-items: center;
+  margin: 50px;
 }

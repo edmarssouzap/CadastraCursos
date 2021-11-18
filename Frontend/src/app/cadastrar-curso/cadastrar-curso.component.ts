@@ -6,6 +6,7 @@ import { CadastrarCursoService } from '../shared/services/cadastrar-curso.servic
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
+
 @Component({
   selector: 'app-cadastrar-curso',
   templateUrl: './cadastrar-curso.component.html',
@@ -16,7 +17,12 @@ export class CadastrarCursoComponent implements OnInit {
   dadosCategoria: Categoria; // Dados do form
   listaCategorias: Categoria[] = []; // Lista obtida pelo servidor vem parar AQUI
 
+  // Data para limitar a criacao dos cursos
+  dataHora = new Date().toISOString();
+  dataAtual = this.dataHora.split('T');
 
+  // Variavel para log
+  UsuarioCast = "Edmar";
 
   constructor(
     private categoriaService: CategoriaService, // Serviço com a lista para puxar as categorias
@@ -35,13 +41,16 @@ export class CadastrarCursoComponent implements OnInit {
     form.reset();
   }
 
-  validandoDataInicialFinal(dataInicial: any, dataFinal: any) {
-    dataInicial: new Date(this.cadastrarCurso.dadosCurso.dataInicio);
+  validandoDataInicialFinal(): boolean {
+    dataInicial: new Date(this.cadastrarCurso.dadosCurso.dataInicio).toISOString();
     dataFinal: new Date(this.cadastrarCurso.dadosCurso.dataFinal);
 
-    if (dataInicial) {
+    // if (dataInicial < dataAtual) {
 
-    }
+    // }
+
+
+    return false;
   }
 
   enviandoDados(form: NgForm): void {

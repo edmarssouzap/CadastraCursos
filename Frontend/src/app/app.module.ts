@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { CadastrarCursoComponent } from './cadastrar-curso/cadastrar-curso.component';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
     CadastrarCursoComponent
   ],
   imports: [
+    Ng2SearchPipeModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

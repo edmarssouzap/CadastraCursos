@@ -7,8 +7,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: "", component: CadastrarCursoComponent },
-  // { path: "", component: LoginComponent },
+  { path: "", component: HomeComponent },
   { path: "cursos", component: CursosComponent },
   { path: "cadastrar-curso", component: CadastrarCursoComponent },
   { path: "login", component: LoginComponent },

@@ -2,6 +2,7 @@ import { CursoService } from './../shared/services/curso.service';
 import { Component, OnInit } from '@angular/core';
 import { Curso } from '../shared/model/curso.model';
 
+
 @Component({
   selector: 'app-cursos',
   templateUrl: './cursos.component.html',
@@ -11,6 +12,8 @@ export class CursosComponent implements OnInit {
 
   dadosCurso: Curso;
   listaCursos: Curso[] = [];
+  pesquisaNome: string = "";
+  pesquisaData = new Date();
 
   constructor(
       private cursoService: CursoService,
@@ -20,6 +23,9 @@ export class CursosComponent implements OnInit {
     this.listandoCursos();
   }
 
+  deletarCurso(curso: any) {
+
+  }
 
   editarCurso(curso: any){
     console.log(curso);

@@ -10,6 +10,22 @@
     <div id="lista">
 
       <!-- -->
+      <div class="row">
+        <div class="col-md-6">
+          <nav class="navbar">
+            <input class="form-control" type="text" name="search" [(ngModel)]="pesquisaNome"
+              placeholder="Digite sua pesquisa" />
+          </nav>
+        </div>
+
+        <div class="col-md-6">
+          <nav class="navbar">
+            <input class="form-control" type="text" name="search"
+            [(ngModel)]="pesquisaNome" onfocus="(this.type='date')" onblur="(this.type='text')"
+            placeholder="Escolha uma data"/>
+          </nav>
+        </div>
+      </div>
 
       <table>
         <thead>
@@ -27,7 +43,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let curso of listaCursos">
+          <tr (dbclick)="editarCurso(curso)"
+          *ngFor="let curso of listaCursos | filter: pesquisaNome; let i = index">
             <td>
               {{curso.cursoId}}
             </td>
@@ -52,6 +69,9 @@
 
             <td>
               <button class="fa fa-edit" (click)="editarCurso(curso)"></button>
+            </td>
+            <td>
+              <button class="fa fa-trash" (click)="deletarCurso(curso)"></button>
             </td>
           </tr>
         </tbody>

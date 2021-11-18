@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "animations": "0.0.0",
+    "ng2-search-filter": "^0.5.1",
     "ngx-toastr": "^14.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
