@@ -25,12 +25,12 @@ namespace CursosCast.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Curso>>> GetCurso()
         {
-            return await _context.Curso.ToListAsync();
+            return await _context.Curso.Include(x=>x.Categoria).ToListAsync();
         }
 
         // GET: api/Cursos/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Curso>> GetCurso(int id)
+        public async Task<ActionResult<Curso>> GetCursoPorId(int id)
         {
             var curso = await _context.Curso.FindAsync(id);
 
@@ -78,6 +78,11 @@ namespace CursosCast.Controllers
         [HttpPost]
         public async Task<ActionResult<Curso>> PostCurso(Curso curso)
         {
+            if (curso.DataInicio > curso.DataFinal)
+            {
+                return BadRequest("Sua data inicial é maior que a data final");
+            }
+
             _context.Curso.Add(curso);
             await _context.SaveChangesAsync();
 

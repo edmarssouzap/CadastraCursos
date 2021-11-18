@@ -10,6 +10,10 @@ input, select, textarea {
   width: 90%;
 }
 
+#validationCustom03, #validationCustom04, #validationCustom05, #validationCustom01 {
+  width: 60%;
+}
+
 #cursos button {
   margin: 30px 0;
 }

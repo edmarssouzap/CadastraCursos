@@ -12,20 +12,28 @@
         <div class="col-md-6">
           <label>
             <span>Nome: *</span><br>
+          </label>
 
             <input style="width: 100%;" id="validationCustom01" class="form-control is-valid"
             type="text" placeholder="Nome do curso" name="nome"
-              [(ngModel)]="cadastrarCursoService.modelCurso.nome" onblur="" autofocus required>
+              [(ngModel)]="cadastrarCursoService.modelCurso.nome"
+              (change)="verificarCurso(cadastrarCursoService.modelCurso.nome)" autofocus required
+            >
+
               <span class="invalid-feedback">Preencha com um nome.</span>
-          </label>
+              <span class="alert-danger" *ngIf="isValid">Não pode cadastrar curso já existente.</span>
+
         </div>
 
         <div class="col-md-6">
 
-          <div class="form-group">
-            <label><span class="white">Categorias: *</span></label>
+          <div class="form-group" id="categoria">
+            <label>
+              <span class="white">Categorias: *</span>
+            </label>
 
-            <select [(ngModel)]="cadastrarCursoService.modelCurso.catId" class="form-control is valid" required>
+            <select [(ngModel)]="cadastrarCursoService.modelCurso.catId"
+            class="form-control is valid" id="validationCustom02" required>
               <option selected disabled value="0">--Selecionar--</option>
               <option *ngFor="let categoria of listaCategorias" [value]="categoria.catId"> {{ categoria.nome }}
               </option>
@@ -43,10 +51,13 @@
             <i class="fa fa-calendar-alt"> *</i>
           </label>
 
-          <input #dataInicio id="validationCustom02" class="form-control is-valid" type="text"
-          [(ngModel)]="cadastrarCursoService.modelCurso.dataInicio" min="{{dataAtual[0]}}" required
-          onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Escolha uma data">
+          <!--min="{{dataAtual[0]}}" - ADICIONAR AO LUGAR-->
+          <input #dataInicio id="validationCustom03" class="form-control is-valid" type="text"
+          [(ngModel)]="cadastrarCursoService.modelCurso.dataInicio" required
+          onfocus="(this.type='date')" onblur="(this.type='text')"
+          (change)="validarDataInicial()" placeholder="Escolha uma data">
 
+          <span class="alert-danger" *ngIf="isValid">Data Inicial tem que ser menor Data Final.</span>
           <span class="invalid-feedback">Por favor, preencha o campo de data.</span>
         </div>
 
@@ -54,13 +65,17 @@
           <label>
             <span>Data Final: </span>
             <i class="fa fa-calendar-alt"> *</i>
-
-            <input #dataFinal id="validationCustom03" class="form-control is-valid" type="text"
-            [(ngModel)]="cadastrarCursoService.modelCurso.dataFinal" min="{{dataAtual[0]}}" required
-            onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Escolha uma data">
-
-            <span class="invalid-feedback">Por favor, preencha o campo de data.</span>
           </label>
+
+
+          <!--min="{{dataAtual[0]}}" - ADICIONAR AO LUGAR-->
+            <input #dataFinal id="validationCustom04" class="form-control is-valid" type="text"
+            [(ngModel)]="cadastrarCursoService.modelCurso.dataFinal" required
+            onfocus="(this.type='date')" onblur="(this.type='text')"
+            (change)="validarDataFinal()" placeholder="Escolha uma data">
+
+            <span class="alert-danger" *ngIf="isValid">Data Inicial tem que ser menor Data Final.</span>
+            <span class="invalid-feedback">Por favor, preencha o campo de data.</span>
         </div>
       </div>
 
@@ -68,19 +83,28 @@
         <div class="col-md-6">
           <label>
             <span>Qtde Alunos por Turma: </span>
-            <input id="validationCustom04" class="form-control is-valid" type="number" min="1" max="999"[(ngModel)]="cadastrarCursoService.modelCurso.qtdAlunosTurma" required>
-            <span class="invalid-feedback">Digite a quantidade de alunos.</span>
           </label>
+            <input id="validationCustom05" class="form-control is-valid" type="number"
+            min="1" max="999" [(ngModel)]="cadastrarCursoService.modelCurso.qtdAlunosTurma"
+            (change)="validarNumero(cadastrarCursoService.modelCurso.qtdAlunosTurma)"
+            required>
+
+            <!-- <div class="alert-danger" *ngIf="isValid">
+              <span>O numero não pode ser menor do que zero.</span>
+            </div> -->
+
+            <span class="alert-danger" *ngIf="isValid">Digite um numero maior que zero.</span>
+            <span class="invalid-feedback">Digite a quantidade de alunos.</span>
         </div>
 
         <div class="col-md-6">
           <label>
             <span>Descrição do curso: *</span>
+          </label>
             <textarea class="form-control invalid" [(ngModel)]="cadastrarCursoService.modelCurso.desAssunto"
               placeholder="Digite a descricao do curso" required>
             </textarea>
             <span class="invalid-feedback">Digite a quantidade de alunos.</span>
-          </label>
         </div>
 
       </div>

@@ -1,7 +1,8 @@
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { CursoService } from './../shared/services/curso.service';
 import { Component, OnInit } from '@angular/core';
 import { Curso } from '../shared/model/curso.model';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cursos',
@@ -20,24 +21,42 @@ export class CursosComponent implements OnInit {
   // Variavel para pagina atual de paginação de dados
   paginaAtual = 1;
 
+
+
   constructor(
       private cursoService: CursoService,
+      private toastr: ToastrService,
+      private router: Router,
     ) { }
 
   ngOnInit(): void {
     this.listandoCursos();
   }
 
-  // Colocar Atualizar lista do banco dentro de deletarCurso
+  atualizarListagemCurso() {
+    this.listandoCursos();
+  }
 
   deletarCurso(curso: any) {
-    this.cursoService.deletarCurso(curso).subscribe((res: any) => {
-      this.listaCursos = res;
+
+    this.listaCursos.forEach(function(curso) {
+      if (curso.dataFinal < (new Date())) {
+          alert("Curso não pode ser excluido, porque a data final é menor que a data de hoje.");
+      } else {
+
+        // if (confirm('Você deseja deletar esse curso?')) {
+        //     this.cursoService.deletarCurso(curso).subscribe((res: any) => {
+        //     this.atualizarListagemCurso();
+        //     this.toastr.warning("Pedido deletado com sucesso.", "CursosCast");
+        //   })
+        // }
+      }
     });
   }
 
-  editarCurso(curso: any){
+  editandoCurso(curso: any) {
     console.log(curso);
+    this.router.navigateByUrl('/Cursos/edit/' + curso);
   }
 
   listandoCursos(): void {
@@ -45,5 +64,4 @@ export class CursosComponent implements OnInit {
       this.listaCursos = res;
     });
   }
-
 }

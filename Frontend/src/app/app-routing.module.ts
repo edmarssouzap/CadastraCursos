@@ -1,3 +1,4 @@
+import { ListagemLogComponent } from './listagem-log/listagem-log.component';
 import { CadastrarCursoComponent } from './cadastrar-curso/cadastrar-curso.component';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
@@ -11,6 +12,8 @@ const routes: Routes = [
   { path: "cadastrar-curso", component: CadastrarCursoComponent },
   { path: "home", component: HomeComponent },
   { path: "notfound", component: NotfoundComponent },
+  { path: "listagem-log", component: ListagemLogComponent },
+  { path: 'edit/:id', component: CursosComponent }, // - /cursos/edit/1
   { path: "**", component: NotfoundComponent }
 ];
 

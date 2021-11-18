@@ -12,7 +12,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { CadastrarCursoComponent } from './cadastrar-curso/cadastrar-curso.component';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { Ng2SearchPipeModule } from 'ng2-search-filter'; // Importacao do filtro
-import { NgxPaginationModule } from 'ngx-pagination'; // Importacao do pagination
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ListagemLogComponent } from './listagem-log/listagem-log.component'; // Importacao do pagination
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NgxPaginationModule } from 'ngx-pagination'; // Importacao do paginatio
     HomeComponent,
     CursosComponent,
     NotfoundComponent,
-    CadastrarCursoComponent
+    CadastrarCursoComponent,
+    ListagemLogComponent
   ],
   imports: [
     NgxPaginationModule, // Modulo para paginacao de dados
