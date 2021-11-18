@@ -7,9 +7,9 @@
     </p>
     <hr />
 
-    <div id="lista">
+    <div id="lista" class="table-responsive-md">
 
-      <!-- -->
+      <!-- CAmpo Input de pesquisa de dados -->
       <div class="row">
         <div class="col-md-6">
           <nav class="navbar">
@@ -27,28 +27,34 @@
         </div>
       </div>
 
-      <table>
-        <thead>
+      <table class="table">
+        <thead class="table-dark">
           <tr>
-            <th>ID do Curso</th>
-            <th>Nome</th>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
 
-            <th>Data de Ínicio</th>
-            <th>Data Final</th>
+            <th scope="col">Data de Ínicio</th>
+            <th scope="col">Data Final</th>
 
-            <th>Alunos por Turma</th>
-            <th>Descrição do Assunto</th>
+            <th scope="col">Alunos por Turma</th>
+            <th scope="col">Descrição do Assunto</th>
 
-            <th>Categoria</th>
+            <th scope="col">Categoria</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
           </tr>
         </thead>
+
         <tbody>
-          <tr (dbclick)="editarCurso(curso)"
-          *ngFor="let curso of listaCursos | filter: pesquisaNome; let i = index">
-            <td>
+          <!-- Editar quando é dado double click na linha do curso (dblclick) -->
+          <!-- filter: pesquisaNome ativa a pesquisa de dados retornado pela API -->
+          <!-- paginate: ativa a paginacao de dados retornado pela API -->
+          <tr (dblclick)="editarCurso(curso)"
+          *ngFor="let curso of listaCursos | filter: pesquisaNome | paginate: { itemsPerPage: 5, currentPage: paginaAtual }; let i = index">
+            <td class="">
               {{curso.cursoId}}
             </td>
-            <td>
+            <td class="">
               {{curso.nome}}
             </td>
             <td>
@@ -71,19 +77,16 @@
               <button class="fa fa-edit" (click)="editarCurso(curso)"></button>
             </td>
             <td>
-              <button class="fa fa-trash" (click)="deletarCurso(curso)"></button>
+              <button class="fa fa-trash" (click)="deletarCurso(curso.cursoId)"></button>
             </td>
           </tr>
         </tbody>
+        <pagination-controls (pageChange)="paginaAtual = $event"
+                              nextLabel="Próximo"
+                              previousLabel="Voltar">
+                              <!--responsive="true"-->
+        </pagination-controls>
       </table>
-
-      <!-- <div class="row" (click)="editarCurso()">
-        <div class="col" >
-          <span>Titulo</span>
-          <p>{{curso.nome}}</p>
-          <i class="fa fa-trash"></i>
-        </div>
-      </div> -->
 
     </div>
   </div>

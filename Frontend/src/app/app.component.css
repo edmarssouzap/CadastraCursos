@@ -1,6 +1,6 @@
-#navbar { background-color: midnightblue }
+#navbar { background-color: midnightblue; }
 
-li, form {
+li {
   display: inline-flex;
 }
 
@@ -8,5 +8,3 @@ span {
   color: white;
   font-weight: bold;
 }
-
-

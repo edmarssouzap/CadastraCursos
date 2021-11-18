@@ -13,11 +13,18 @@ namespace CursosCast.Model
         public int CursoId { get; set; }
         [Required]
         public string Nome { get; set; }
+        
+        [Required]
         public DateTime DataInicio { get; set; }
+
+        [Required]
         public DateTime DataFinal { get; set; }
+        
         public int? QtdAlunosTurma { get; set; }
+
         [Required]
         public string DesAssunto { get; set; }
+        
         [ForeignKey("Categoria")]
         public int CatId { get; set; }
 

@@ -10,21 +10,30 @@ import { Curso } from '../shared/model/curso.model';
 })
 export class CursosComponent implements OnInit {
 
-  dadosCurso: Curso;
+  // Guarda a lista de propriedade e resposta da API
   listaCursos: Curso[] = [];
+
+  // Variavel utilizada para ditar o tipo de retorno no filtro de pesquisa
   pesquisaNome: string = "";
   pesquisaData = new Date();
 
+  // Variavel para pagina atual de paginação de dados
+  paginaAtual = 1;
+
   constructor(
       private cursoService: CursoService,
-    ) { this.dadosCurso = {} as Curso; }
+    ) { }
 
   ngOnInit(): void {
     this.listandoCursos();
   }
 
-  deletarCurso(curso: any) {
+  // Colocar Atualizar lista do banco dentro de deletarCurso
 
+  deletarCurso(curso: any) {
+    this.cursoService.deletarCurso(curso).subscribe((res: any) => {
+      this.listaCursos = res;
+    });
   }
 
   editarCurso(curso: any){
@@ -34,7 +43,6 @@ export class CursosComponent implements OnInit {
   listandoCursos(): void {
     this.cursoService.obterCursos().subscribe((res: any) => {
       this.listaCursos = res;
-      console.log(res);
     });
   }
 

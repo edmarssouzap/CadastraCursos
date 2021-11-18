@@ -1,3 +1,5 @@
+
+/* Mostra espaco do topo ate o titulo principal */
 p[class^="h1"] {
   margin-top: 50px;
 }
@@ -7,15 +9,8 @@ span {
 }
 
 tbody tr:hover {
-  background-color: dodgerblue;
+  background-color: rgb(235, 233, 233);
+  cursor:pointer;
 }
 
-tr, tbody, th, td, table{
-  margin: 10px;
-  align-items: center;
-}
 
-td, th {
-  align-items: center;
-  margin: 50px;
-}

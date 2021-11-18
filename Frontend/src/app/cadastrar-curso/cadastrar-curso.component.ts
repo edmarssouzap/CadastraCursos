@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Categoria } from './../shared/model/categoria.model';
+import { Curso } from '../shared/model/curso.model';
+
 import { CategoriaService } from '../shared/services/categoria.service';
+import { CursoService } from './../shared/services/curso.service';
 import { CadastrarCursoService } from '../shared/services/cadastrar-curso.service';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-
 
 @Component({
   selector: 'app-cadastrar-curso',
@@ -14,8 +16,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CadastrarCursoComponent implements OnInit {
 
-  dadosCategoria: Categoria; // Dados do form
   listaCategorias: Categoria[] = []; // Lista obtida pelo servidor vem parar AQUI
+  listaCursos: Curso[] = [];
 
   // Data para limitar a criacao dos cursos
   dataHora = new Date().toISOString();
@@ -26,12 +28,10 @@ export class CadastrarCursoComponent implements OnInit {
 
   constructor(
     private categoriaService: CategoriaService, // Serviço com a lista para puxar as categorias
-    public cadastrarCurso: CadastrarCursoService, // Servico para enviar a requisicao ao servidor API
+    public cadastrarCursoService: CadastrarCursoService, // Servico para enviar a requisicao ao servidor API
+    public cursoService: CursoService,
     public toastr: ToastrService
-  )
-  {
-    this.dadosCategoria = {} as Categoria;
-  }
+  ) { }
 
   ngOnInit(): void {
     this.listandoCategorias();
@@ -41,40 +41,34 @@ export class CadastrarCursoComponent implements OnInit {
     form.reset();
   }
 
-  validandoDataInicialFinal(): boolean {
-    dataInicial: new Date(this.cadastrarCurso.dadosCurso.dataInicio).toISOString();
-    dataFinal: new Date(this.cadastrarCurso.dadosCurso.dataFinal);
+  verificarNomeCurso() {
+    if (this.cadastrarCursoService.modelCurso.nome) {
 
-    // if (dataInicial < dataAtual) {
-
-    // }
-
-
-    return false;
+    }
   }
 
   enviandoDados(form: NgForm): void {
     if (form.valid) {
-      // dataBrasil: this.cadastrarCurso.dadosCurso.dataInicio.toLocaleDateString('pt-BR', {timeZone: 'UTC'});
-
-      this.cadastrarCurso.cadastrandoCurso().subscribe((res) => {
-        console.log(res)
+      this.cadastrarCursoService.cadastrandoCurso().subscribe((res) => {
+        console.log(form.status + " = " + res);
         this.toastr.success("Enviado com sucesso.", "CursosCast");
-        form.reset();
+        form.resetForm();
     });
     } else {
-      console.log (this.cadastrarCurso.dadosCurso);
       this.toastr.toastrConfig;
       this.toastr.error("Erro ao enviar os dados.", "CursosCast");
     }
+  }
+
+  listandoCursos(): void {
+    this.cursoService.obterCursos().subscribe((res: any) => (
+      this.listaCursos = res
+    ));
   }
 
   listandoCategorias(): void {
      this.categoriaService.obterCategoria().subscribe((res: any) => (
          this.listaCategorias = res
      ));
-    //  this.listaCategorias.forEach(element => {
-    //    element.catId
-    //  });
   }
 }

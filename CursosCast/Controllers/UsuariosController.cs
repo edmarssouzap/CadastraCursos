@@ -12,47 +12,47 @@ namespace CursosCast.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ContasController : ControllerBase
+    public class UsuariosController : ControllerBase
     {
         private readonly CursosCastContext _context;
 
-        public ContasController(CursosCastContext context)
+        public UsuariosController(CursosCastContext context)
         {
             _context = context;
         }
 
-        // GET: api/Contas
+        // GET: api/Usuarios
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Conta>>> GetConta()
+        public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuario()
         {
-            return await _context.Conta.ToListAsync();
+            return await _context.Usuario.ToListAsync();
         }
 
-        // GET: api/Contas/5
+        // GET: api/Usuarios/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Conta>> GetConta(int id)
+        public async Task<ActionResult<Usuario>> GetUsuario(int id)
         {
-            var conta = await _context.Conta.FindAsync(id);
+            var usuario = await _context.Usuario.FindAsync(id);
 
-            if (conta == null)
+            if (usuario == null)
             {
                 return NotFound();
             }
 
-            return conta;
+            return usuario;
         }
 
-        // PUT: api/Contas/5
+        // PUT: api/Usuarios/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutConta(int id, Conta conta)
+        public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
         {
-            if (id != conta.ContaId)
+            if (id != usuario.UsuarioId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(conta).State = EntityState.Modified;
+            _context.Entry(usuario).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace CursosCast.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ContaExists(id))
+                if (!UsuarioExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace CursosCast.Controllers
             return NoContent();
         }
 
-        // POST: api/Contas
+        // POST: api/Usuarios
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Conta>> PostConta(Conta conta)
+        public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
         {
-            _context.Conta.Add(conta);
+            _context.Usuario.Add(usuario);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetConta", new { id = conta.ContaId }, conta);
+            return CreatedAtAction("GetUsuario", new { id = usuario.UsuarioId }, usuario);
         }
 
-        // DELETE: api/Contas/5
+        // DELETE: api/Usuarios/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteConta(int id)
+        public async Task<IActionResult> DeleteUsuario(int id)
         {
-            var conta = await _context.Conta.FindAsync(id);
-            if (conta == null)
+            var usuario = await _context.Usuario.FindAsync(id);
+            if (usuario == null)
             {
                 return NotFound();
             }
 
-            _context.Conta.Remove(conta);
+            _context.Usuario.Remove(usuario);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool ContaExists(int id)
+        private bool UsuarioExists(int id)
         {
-            return _context.Conta.Any(e => e.ContaId == id);
+            return _context.Usuario.Any(e => e.UsuarioId == id);
         }
     }
 }

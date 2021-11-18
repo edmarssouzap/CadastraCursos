@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
+  production: false,
   EnderecoAPI: 'https://localhost:44333/api'
 };

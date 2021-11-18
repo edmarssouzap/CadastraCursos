@@ -18,6 +18,7 @@ namespace CursosCast.Data
 
         public DbSet<CursosCast.Model.Categoria> Categoria { get; set; }
 
-        public DbSet<CursosCast.Model.Conta> Conta { get; set; }
+        public DbSet<CursosCast.Model.Log> Log { get; set; }
+        public DbSet<CursosCast.Model.Usuario> Usuario { get; set; }
     }
 }

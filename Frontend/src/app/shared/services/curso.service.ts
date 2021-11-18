@@ -13,9 +13,11 @@ export class CursoService {
 
   constructor(
     private http: HttpClient
-  )
-  {
+  ) {  }
 
+
+  deletarCurso(id: number) {
+    return this.http.delete(environment.EnderecoAPI + '/Cursos' + id)
   }
 
   obterCursos() {
