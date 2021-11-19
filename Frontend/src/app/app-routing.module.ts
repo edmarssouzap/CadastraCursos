@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "cursos", component: CursosComponent },
   { path: "cadastrar-curso", component: CadastrarCursoComponent },
-  { path: 'cadastrar-curso/:id', component: CursosComponent }, // - /cadastrar-curso/1
+  { path: 'cadastrar-curso/:id', component: CadastrarCursoComponent }, // - /cadastrar-curso/1
   { path: "home", component: HomeComponent },
   { path: "notfound", component: NotfoundComponent },
   { path: "**", component: NotfoundComponent }

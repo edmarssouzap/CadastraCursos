@@ -13,8 +13,8 @@ export class CursoService {
     private http: HttpClient
   ) {  }
 
-  editarCurso(id: number, corpo: Curso[]) {
-    return this.http.put(environment.EnderecoAPI + '/Cursos/' + id, corpo)
+  editarCurso(id: number) {
+    return this.http.get(environment.EnderecoAPI + '/Cursos/' + id)
   }
 
   deletarCurso(id: number) {

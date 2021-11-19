@@ -13,4 +13,15 @@ tbody tr:hover {
   cursor:pointer;
 }
 
+#btnPesquisa {
+  background:transparent;
+  border:none;
+}
 
+input {
+  display: inline-flex;
+}
+
+button {
+  display: inline-flex;
+}

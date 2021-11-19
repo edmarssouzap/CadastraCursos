@@ -38,12 +38,12 @@ export class CadastrarCursoComponent implements OnInit {
   }
 
   validarDataInicial() {
-    console.log(this.dataHora);
     if (this.cadastrarCursoService.modelCurso.dataInicio.toString() < this.dataAtual[0].toString()) {
-        this.isValid = true;
+      this.isValid = true;
     } else {
       this.isValid = false;
     }
+
   }
 
   validarDataFinal() {

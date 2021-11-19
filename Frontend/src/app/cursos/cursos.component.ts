@@ -29,12 +29,14 @@ export class CursosComponent implements OnInit {
       private toastr: ToastrService,
       private router: Router,
       private route: ActivatedRoute
-    ) {
-      this.route.params.subscribe(params => this.userId = params['id']);
-    }
+    ) { }
 
   ngOnInit(): void {
     this.listandoCursos();
+
+    // this.route.params.subscribe(params =>
+    //   this.userId = params['id']
+    //   );
   }
 
   atualizarListagemCurso() {
@@ -50,8 +52,22 @@ export class CursosComponent implements OnInit {
     }
   }
 
-  editandoCurso() {
-    this.router.navigateByUrl('cadastrar-curso/', this.userId);
+  editandoCurso(id: number) {
+    // Corpo para um PUT bem-sucedido (Testado com o postman)
+    /* var body = {
+        cursoId: 2,
+        nome: "string",
+        dataInicio: "2021-11-19T08:09:35.970Z",
+        dataFinal: "2021-11-19T08:09:35.970Z",
+        qtdAlunosTurma: 0,
+        desAssunto: "string",
+        catId: 1
+    } */
+
+    this.cursoService.editarCurso(id).subscribe((res: any) => {
+    this.listaCursos = res[0]
+    });
+    //this.router.navigate(['cadastrar-curso/', id]);
   }
 
   listandoCursos(): void {

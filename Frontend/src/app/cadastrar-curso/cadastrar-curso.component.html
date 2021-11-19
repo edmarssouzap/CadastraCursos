@@ -54,7 +54,7 @@
           onfocus="(this.type='date')" onblur="(this.type='text')"
           (change)="validarDataInicial()" placeholder="Escolha uma data">
 
-          <span class="alert-danger" *ngIf="isValid">Data Inicial tem que ser menor Data Final.</span>
+          <span class="alert-danger" *ngIf="isValid">Data Inicial tem que ser maior que Data Atual.</span>
           <span class="invalid-feedback">Por favor, preencha o campo de data.</span>
         </div>
 
@@ -69,7 +69,7 @@
             onfocus="(this.type='date')" onblur="(this.type='text')"
             (change)="validarDataFinal()" placeholder="Escolha uma data">
 
-            <span class="alert-danger" *ngIf="isValid">Data Inicial tem que ser menor Data Final.</span>
+            <span class="alert-danger" *ngIf="isValid">Data Final tem que ser maior que Data Atual.</span>
             <span class="invalid-feedback">Por favor, preencha o campo de data.</span>
         </div>
       </div>

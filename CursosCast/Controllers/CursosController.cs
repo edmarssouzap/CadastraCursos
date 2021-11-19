@@ -78,10 +78,15 @@ namespace CursosCast.Controllers
         [HttpPost]
         public async Task<ActionResult<Curso>> PostCurso(Curso curso)
         {
-            if (curso.DataInicio > curso.DataFinal)
+            if (curso.DataInicio < DateTime.Today)
             {
-                return BadRequest("Sua data inicial é maior que a data final");
+                return BadRequest("A data de início deve ser maior que a data atual.");
             }
+            else if (curso.DataInicio > curso.DataFinal)
+            {
+                return BadRequest("A data de início deve ser menor que a data de término.");
+            }
+            
 
             _context.Curso.Add(curso);
             await _context.SaveChangesAsync();
@@ -97,6 +102,8 @@ namespace CursosCast.Controllers
             if (curso == null)
             {
                 return NotFound();
+            } else if (curso.DataFinal <= DateTime.Now) {
+                return BadRequest("Não é possível excluir cursos já realizados");
             }
 
             _context.Curso.Remove(curso);
