@@ -9,16 +9,13 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class CursoService {
 
-  modelCurso: Curso[] = [];
-
   constructor(
     private http: HttpClient
   ) {  }
 
-  editarCurso(id: number) {
-    return this.http.put(environment.EnderecoAPI + '/Cursos/' + id, this.modelCurso)
+  editarCurso(id: number, corpo: Curso[]) {
+    return this.http.put(environment.EnderecoAPI + '/Cursos/' + id, corpo)
   }
-
 
   deletarCurso(id: number) {
     return this.http.delete(environment.EnderecoAPI + '/Cursos/' + id)

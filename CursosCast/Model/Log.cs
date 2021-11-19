@@ -14,7 +14,7 @@ namespace CursosCast.Model
         [Required(ErrorMessage = "Incluir a data de inclusao do log")]
         public DateTime DataInclusao { get; set; }
 
-        [Required(ErrorMessage = "Incluir a data da ultima atualizacao do log")]
-        public DateTime DataUltimaAtualizacao { get; set; }
+        [Required(ErrorMessage = "Incluir a ação que foi realizada para o log")]
+        public string Acao { get; set; }
     }
 }

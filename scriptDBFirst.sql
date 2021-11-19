@@ -19,6 +19,19 @@ GO
 -- Curso (N) -> (1) Categoria (ou seja, de muitos para um)
 ALTER TABLE Curso ADD CONSTRAINT FK_Categoria_CatId FOREIGN KEY (CatId) REFERENCES Categoria (CatId)
 
+CREATE TABLE Log (
+	LogId INT Identity Primary key,
+	DataInclusao Date,
+	Acao string NOT NULL
+);
+
+GO
+
+CREATE TABLE Usuario (
+	UsuarioId INT Identity Primary key,
+	Nome string NOT NULL
+);
+
 CREATE TABLE Categoria (
 	CatId INT IDENTITY PRIMARY KEY,
 	Nome VARCHAR (15) NOT NULL

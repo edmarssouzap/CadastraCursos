@@ -9,7 +9,7 @@
 
     <div id="lista" class="table-responsive-md">
 
-      <!-- CAmpo Input de pesquisa de dados -->
+      <!-- Campo Input de pesquisa de dados -->
       <div class="row">
         <div class="col-md-6">
           <nav class="navbar">
@@ -49,7 +49,7 @@
           <!-- Editar quando é dado double click na linha do curso (dblclick) -->
           <!-- filter: pesquisaNome ativa a pesquisa de dados retornado pela API -->
           <!-- paginate: ativa a paginacao de dados retornado pela API -->
-          <tr (dblclick)="editandoCurso(curso)"
+          <tr (dblclick)="editandoCurso()"
           *ngFor="let curso of listaCursos | filter: pesquisaNome | paginate: { itemsPerPage: 5, currentPage: paginaAtual }; let i = index">
             <td class="">
               {{curso.cursoId}}
@@ -74,7 +74,7 @@
             </td>
 
             <td>
-              <button class="fa fa-edit" (click)="editandoCurso(curso.cursoId)"></button>
+              <button class="fa fa-edit" (click)="editandoCurso()"></button>
             </td>
             <td>
               <button class="fa fa-trash" (click)="deletarCurso(curso.cursoId)"></button>

@@ -1,8 +1,9 @@
-import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { CursoService } from './../shared/services/curso.service';
 import { Component, OnInit } from '@angular/core';
 import { Curso } from '../shared/model/curso.model';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cursos',
@@ -21,13 +22,16 @@ export class CursosComponent implements OnInit {
   // Variavel para pagina atual de paginação de dados
   paginaAtual = 1;
 
-
+  public userId: any;
 
   constructor(
       private cursoService: CursoService,
       private toastr: ToastrService,
       private router: Router,
-    ) { }
+      private route: ActivatedRoute
+    ) {
+      this.route.params.subscribe(params => this.userId = params['id']);
+    }
 
   ngOnInit(): void {
     this.listandoCursos();
@@ -38,25 +42,16 @@ export class CursosComponent implements OnInit {
   }
 
   deletarCurso(curso: any) {
-
-    this.listaCursos.forEach(function(curso) {
-      if (curso.dataFinal < (new Date())) {
-          alert("Curso não pode ser excluido, porque a data final é menor que a data de hoje.");
-      } else {
-
-        // if (confirm('Você deseja deletar esse curso?')) {
-        //     this.cursoService.deletarCurso(curso).subscribe((res: any) => {
-        //     this.atualizarListagemCurso();
-        //     this.toastr.warning("Pedido deletado com sucesso.", "CursosCast");
-        //   })
-        // }
-      }
-    });
+    if (confirm('Você deseja deletar esse curso?')) {
+        this.cursoService.deletarCurso(curso).subscribe((res: any) => {
+        this.atualizarListagemCurso();
+        this.toastr.warning("Pedido deletado com sucesso.", "CursosCast");
+      })
+    }
   }
 
-  editandoCurso(curso: any) {
-    console.log(curso);
-    this.router.navigateByUrl('/Cursos/edit/' + curso);
+  editandoCurso() {
+    this.router.navigateByUrl('cadastrar-curso/', this.userId);
   }
 
   listandoCursos(): void {

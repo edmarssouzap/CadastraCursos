@@ -37,20 +37,8 @@ export class CadastrarCursoComponent implements OnInit {
     this.listandoCategorias();
   }
 
-  // Verificar por que não retorna true para o template
-  verificarCurso(nomeCurso:string) {
-    this.listaCursos.forEach(function(curso) {
-      if (curso.nome == nomeCurso) {
-        console.log ("Edmar: " + curso.nome);
-        // this.isValid = true;
-      }
-      // this.isValid = false;
-    });
-  }
-
-  // NAO ESTA FUNCIONANDO (VERIFICAR)
   validarDataInicial() {
-    console.log(this.dataAtual);
+    console.log(this.dataHora);
     if (this.cadastrarCursoService.modelCurso.dataInicio.toString() < this.dataAtual[0].toString()) {
         this.isValid = true;
     } else {
@@ -59,7 +47,7 @@ export class CadastrarCursoComponent implements OnInit {
   }
 
   validarDataFinal() {
-    if (this.cadastrarCursoService.modelCurso.dataFinal < this.cadastrarCursoService.modelCurso.dataInicio) {
+    if (this.cadastrarCursoService.modelCurso.dataFinal.toString() < this.cadastrarCursoService.modelCurso.dataInicio.toString()) {
         this.isValid = true;
     } else {
       this.isValid = false;
@@ -68,7 +56,6 @@ export class CadastrarCursoComponent implements OnInit {
 
   validarNumero(id: number) {
     if (id < 0) {
-      //this.cadastrarCursoService.modelCurso.qtdAlunosTurma = 0;
       this.isValid = true;
     } else {
       this.isValid = false;
@@ -79,7 +66,6 @@ export class CadastrarCursoComponent implements OnInit {
     if (form.valid) {
       this.cadastrarCursoService.cadastrandoCurso().subscribe(
         (resposta) => {
-          console.log(form.status + ' = ' + resposta);
           this.toastr.success('Enviado com sucesso.', 'CursosCast');
           form.resetForm();
         },
